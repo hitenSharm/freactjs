@@ -1,6 +1,8 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
+//as any child could be something primitive like text/numbers we need a secial function just for those nodes
+
 function createElement(type,props,...children)
 {
   return {
@@ -14,8 +16,6 @@ function createElement(type,props,...children)
   }
 }
 
-//as any child could be something primitive like text/numbers we need a secial function just for those nodes
-
 function createTextElement(text)
 {
   return{
@@ -27,12 +27,24 @@ function createTextElement(text)
   }
 }
 
-const element = (
-  <div id="bar">
-    <h1>Child below is empty</h1>
-    <h2></h2>
-  </div>
-)
+//---------- creation basically does this
+
+//--jsx below 
+
+// const element = (                                
+//   <h1 title="fubar">Text child</h1>
+// );
+
+//--turns to
+
+// const element ={
+//   type:"h1",
+//   props:{
+//     title:"fubar",
+//     children:"Text child"
+//   }
+// };
+//--------------------------------------------
 
 // we need to create our own React.createElement type function which takes jsx and turns it to js
 //a create element function basically creates an object with types and props
