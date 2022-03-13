@@ -1,17 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const element ={
+  type:"h1",
+  props:{
+    title:"fubar",
+    children:"Text child"
+  }
+};
+//jsx is turned into js using Babel
+//const element =<h1 title="fubar">Text child</h1> this is JSX; not valid JS
+//to turn into valid JS i need createElement
+//we can use React.createElement but we need to replace it with our own to make framework
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const container = document.getElementById("root")
+
+//we also need to replace ReactDom.render
+//so we need to create a node using the element
+
+const node = document.createElement(element.type);
+//create a node of type element.type and give it a title
+node["title"]=element.props.title;
+
+//next we need to work on children. i.e. create children nodes
+//here we have a string in children so we need to create a text node
+
+const text=document.createTextNode(element.props.children)
+
+//append to original node
+node.appendChild(text);
+//append to container
+container.appendChild(node);
+
+//---------------------------first iteration of a basic JavaScript only rendering system for text---------
+
+
+
