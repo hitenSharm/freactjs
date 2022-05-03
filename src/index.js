@@ -59,7 +59,7 @@ let nextWork = null;
 let wipRoot = null; //work in progress root
 
 function render(element, container) {
-  //this turns my VDOM into DOM usinf fibers
+  //this turns my VDOM into DOM using fibers
   //set root node for fiber tree (work in progress root)
   wipRoot = {
     dom: container,
@@ -112,7 +112,7 @@ function peformUnitWork(fiber) {
       prevSibling.sibling = newFiber;
     }
     prevSibling = newFiber;
-    //this is to iterate through the sibling nodes
+    //this is to make the sibling nodes
     index++;
   }
   //now we need to return next unit of work
@@ -126,6 +126,7 @@ function peformUnitWork(fiber) {
       return nextFiber.sibling;
     }
     nextFiber = nextFiber.parent;
+    //get uncle node
   }  
 }
 //ReactDOM.render like function below
@@ -182,7 +183,7 @@ const app = (
         allowfullscreen
       ></iframe>
     </div>
-  </div>
+  </div>  
 );
 
 const container = document.getElementById("root");
