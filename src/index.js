@@ -75,14 +75,14 @@ function workingLoop(deadline) {
   while (nextWork && !isYield) {
     nextWork = peformUnitWork(nextWork);
     isYield = deadline.timeRemaining() < 1;
-    //timeRemaining is used to see how much time is left till next work
+    //timeRemaining is used to see how much time is left in the frame
   }
   if(!nextWork && wipRoot){
     commitRoot();
   }
   requestIdleCallback(workingLoop);
   //requestIdleCallback is like setTimeout but browser runs it automatically when
-  //the main thread is idle
+  //the main thread is idle in the frame
 }
 
 requestIdleCallback(workingLoop);
